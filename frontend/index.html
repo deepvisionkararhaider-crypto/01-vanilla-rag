@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vanilla RAG — Retrieval-Augmented Generation Demo</title>
+  <meta name="description" content="A from-scratch RAG service: chunking, embeddings, vector search, and grounded answers with citations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">◈</span>
+      <div>
+        <h1>Vanilla RAG</h1>
+        <p class="tagline">chunk → embed → retrieve → grounded answer with citations</p>
+      </div>
+    </div>
+    <div class="status" id="status">
+      <span class="dot" id="statusDot"></span>
+      <span id="statusText">connecting…</span>
+    </div>
+  </header>
+
+  <section class="config">
+    <label for="apiBase">Backend API URL</label>
+    <input id="apiBase" type="text" placeholder="http://localhost:8000" />
+    <button id="connectBtn" class="btn">Connect</button>
+    <div class="pipeline" id="pipelineInfo"></div>
+  </section>
+
+  <div id="banner" class="banner hidden"></div>
+
+  <main class="grid">
+    <!-- Knowledge base / ingestion -->
+    <section class="card">
+      <h2>1 · Knowledge Base</h2>
+      <p class="hint">Add documents to the index. Paste text or upload a <code>.txt</code>, <code>.md</code>, or <code>.pdf</code> file.</p>
+
+      <div class="field">
+        <label for="sourceId">Source ID (optional)</label>
+        <input id="sourceId" type="text" placeholder="e.g. handbook-2026" />
+      </div>
+
+      <div class="field">
+        <label for="docText">Document text</label>
+        <textarea id="docText" rows="8" placeholder="Paste document text here…"></textarea>
+      </div>
+
+      <div class="row">
+        <button id="ingestTextBtn" class="btn primary">Ingest Text</button>
+        <label class="btn file">
+          Upload File
+          <input id="fileInput" type="file" accept=".txt,.md,.markdown,.pdf,.rst,.csv,.json" hidden />
+        </label>
+        <button id="sampleBtn" class="btn ghost">Load Sample</button>
+      </div>
+
+      <div class="docs">
+        <h3>Indexed documents <span id="docCount" class="pill">0</span></h3>
+        <ul id="docList" class="doclist"></ul>
+      </div>
+    </section>
+
+    <!-- Query -->
+    <section class="card">
+      <h2>2 · Ask a Question</h2>
+      <p class="hint">Retrieval finds the most relevant passages; the answer is grounded in them and cited.</p>
+
+      <div class="field">
+        <label for="question">Question</label>
+        <textarea id="question" rows="3" placeholder="What is the refund policy?"></textarea>
+      </div>
+
+      <div class="row">
+        <div class="field inline">
+          <label for="topK">top_k</label>
+          <input id="topK" type="number" min="1" max="20" value="4" />
+        </div>
+        <button id="askBtn" class="btn primary">Ask</button>
+      </div>
+
+      <div id="answerWrap" class="answer hidden">
+        <h3>Answer</h3>
+        <p id="answerText"></p>
+        <div class="meta" id="answerMeta"></div>
+      </div>
+
+      <div id="sourcesWrap" class="sources hidden">
+        <h3>Retrieved sources</h3>
+        <ol id="sourcesList"></ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Vanilla RAG · Project 01 of the AI Engineering Portfolio</span>
+    <span class="links">
+      <a id="ghLink" href="#" target="_blank" rel="noopener">GitHub</a>
+      <a id="docsLink" href="#" target="_blank" rel="noopener">API docs</a>
+    </span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
