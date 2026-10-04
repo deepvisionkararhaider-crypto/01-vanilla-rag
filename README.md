@@ -291,7 +291,7 @@ docker compose up --build
 
 ## Live Demo
 
-- **Frontend (GitHub Pages):** LIVE_DEMO_URL_PLACEHOLDER
+- **Frontend (GitHub Pages):** https://deepvisionkararhaider-crypto.github.io/01-vanilla-rag/
 - **API (local):** `http://localhost:8000` · **Swagger:** `http://localhost:8000/docs`
 
 ## Screenshots
