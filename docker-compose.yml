@@ -1,0 +1,35 @@
+services:
+  api:
+    build:
+      context: .
+      args:
+        # Set to "true" to bake sentence-transformers + FAISS into the image.
+        INSTALL_ML: "false"
+    image: vanilla-rag:latest
+    ports:
+      - "8000:8000"
+    environment:
+      EMBEDDING_PROVIDER: hashing      # hashing | sentence-transformers | auto
+      VECTOR_STORE: numpy              # numpy | faiss | auto
+      LLM_PROVIDER: extractive         # extractive | openai | huggingface
+      CORS_ORIGINS: "*"
+      DATA_DIR: /app/data
+      INDEX_DIR: /app/index
+      LOG_LEVEL: INFO
+      # Uncomment to enable real LLM generation (never commit real values):
+      # OPENAI_API_KEY: ${OPENAI_API_KEY}
+    volumes:
+      - ragdata:/app/data
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8000/health',timeout=5).status==200 else 1)"
+      interval: 30s
+      timeout: 6s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  ragdata:
