@@ -137,7 +137,7 @@ LLMProvider         → ExtractiveProvider | OpenAIProvider | HuggingFaceProvide
 ## Installation
 
 ```bash
-git clone https://github.com/GITHUB_USERNAME_PLACEHOLDER/01-vanilla-rag.git
+git clone https://github.com/deepvisionkararhaider-crypto/01-vanilla-rag.git
 cd 01-vanilla-rag
 python -m venv .venv
 # Windows: .venv\Scripts\activate     macOS/Linux: source .venv/bin/activate

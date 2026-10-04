@@ -34,7 +34,7 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/CHANGEME/01-vanilla-rag"
+Homepage = "https://github.com/deepvisionkararhaider-crypto/01-vanilla-rag"
 
 [tool.setuptools.packages.find]
 include = ["app*"]
