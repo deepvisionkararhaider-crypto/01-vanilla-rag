@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Environments
+.venv/
+.venv*/
+venv/
+env/
+
+# Secrets - NEVER commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Runtime artifacts
+/index/
+/data/*.json
+/data/*.faiss
+/data/*.pkl
+*.faiss
+*.npy
+
+# Model caches
+.cache/
+.huggingface/
+
+# Testing / tooling
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
